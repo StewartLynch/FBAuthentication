@@ -14,9 +14,14 @@ import AuthenticationServices
 // This typeAlias is defined just to make it simpler to deal with the tuble used in the SignInWithApple handle function once signed in.
 typealias SignInWithAppleResult = (authDataResult: AuthDataResult, appleIDCredential: ASAuthorizationAppleIDCredential)
 
+/// Static functions to handle the various authentication processes
 public struct FBAuth {
     // MARK: - Sign In with Email functions
     
+    /// Called when requesting a password reset
+    /// - Parameters:
+    ///   - email: the email address used if signed in with apple
+    ///   - resetCompletion: the result returned either a success or an error
     static func resetPassword(email:String, resetCompletion:@escaping (Result<Bool,Error>) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email, completion: { (error) in
             if let error = error {
@@ -27,6 +32,11 @@ public struct FBAuth {
         }
         )}
     
+    /// The function called when authentication requested by email sign in
+    /// - Parameters:
+    ///   - email: the email address entered in the  login form
+    ///   - password: the password entered in the login form
+    ///   - completionHandler: the result returned after authentication attempt
     static func authenticate(withEmail email :String,
                              password:String,
                              completionHandler:@escaping (Result<Bool, EmailAuthError>) -> ()) {
@@ -55,6 +65,11 @@ public struct FBAuth {
     
     // MARK: - SignIn with Apple Functions
     
+    /// Function called when asking to sign in with apple
+    /// - Parameters:
+    ///   - idTokenString: a random token generated for the process
+    ///   - nonce: a nonce created to manage the process
+    ///   - completion: the result returned after authentication attempt
     static func signInWithApple(idTokenString: String,
                                 nonce: String,
                                 completion: @escaping (Result<AuthDataResult, Error>) -> ()) {
@@ -81,6 +96,10 @@ public struct FBAuth {
         }
     }
     
+    /// The function called when an attempt to sign in with apple has been attempted
+    /// - Parameters:
+    ///   - signInWithAppleResult: the result coming back as a result of the signinin process
+    ///   - completion: callback function dealing with the result from the sign in attempt
     static func handle(_ signInWithAppleResult: SignInWithAppleResult, completion: @escaping (Result<Bool, Error>) -> ()) {
         // SignInWithAppleResult is a tuple with the authDataResult and appleIDCredentioal
         // Now that you are signed in, we can update our User database to add this user.
@@ -124,6 +143,10 @@ public struct FBAuth {
     }
     
     // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
+    
+    /// Function called to generate a random string used for the Sign In with apple process
+    /// - Parameter length: an int required for the function
+    /// - Returns: used by the sign in process
     static func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
         let charset: Array<Character> =
@@ -167,6 +190,13 @@ public struct FBAuth {
     }
     
     // MARK: - FB Firestore User creation
+    
+    /// Function that creates the Firebase Firestore entry in the user collection
+    /// - Parameters:
+    ///   - email: email address used for authentication
+    ///   - name: Name entered and stored in the user collection
+    ///   - password: password used, but not stored
+    ///   - completionHandler: result completion handler
     static func createUser(withEmail email:String,
                            name: String,
                            password:String,
@@ -193,6 +223,8 @@ public struct FBAuth {
     
     // MARK: - Logout
     
+    /// Function called when a log out call is made.  Sets the FBAuthSate to .signout
+    /// - Parameter completion: completion handler for result
     public static func logout(completion: @escaping (Result<Bool, Error>) -> ()) {
         let auth = Auth.auth()
         do {
@@ -221,6 +253,10 @@ public struct FBAuth {
         return providers
     }
     
+    /// Function called when an user requests an account deletion when signed in with email.  This requires a reauthentication in Firebase
+    /// - Parameters:
+    ///   - password: password used in authentication
+    ///   - completion: completion handler dealing with response
     static func reauthenticateWithPassword(password: String, completion: @escaping (Result<Bool,Error>) -> Void) {
         if let user = Auth.auth().currentUser {
             let credential = EmailAuthProvider.credential(withEmail: user.email ?? "", password: password)
@@ -234,6 +270,12 @@ public struct FBAuth {
         }
     }
     
+    
+    /// Function called when an user requests an account deletion when signed in with apple.  This requires a reauthentication in Firebase
+    /// - Parameters:
+    ///   - idTokenString: required parameter
+    ///   - nonce: required parameter
+    ///   - completion: completion handler dealing with response
     static func reauthenticateWithApple(idTokenString: String, nonce: String, completion: @escaping (Result<Bool,Error>) -> Void) {
         if let user = Auth.auth().currentUser {
             let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
@@ -247,6 +289,8 @@ public struct FBAuth {
         }
     }
     
+    /// Function called to delete the entry in the Firestore authentication and the user collection corresponding to the user
+    /// - Parameter completion: completion handler dealing with response
     static func deleteUser(completion: @escaping (Result<Bool,Error>) -> Void) {
         if let user = Auth.auth().currentUser {
             user.delete { error in

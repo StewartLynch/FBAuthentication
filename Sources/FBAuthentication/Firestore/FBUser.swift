@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// <#Description#>
+/// The User object created when the user authenticates.
 public struct FBUser {
     let uid: String
     public let name: String
@@ -25,7 +25,7 @@ public struct FBUser {
 }
 
 public extension FBUser {
-    /// <#Description#>
+    /// the Firebase keys
      init?(documentData: [String : Any]) {
         let uid = documentData[FBKeys.User.uid] as? String ?? ""
         let name = documentData[FBKeys.User.name] as? String ?? ""
@@ -41,12 +41,12 @@ public extension FBUser {
         )
     }
     
-    /// <#Description#>
+    /// Properties mapped to the Firebase keys
     /// - Parameters:
-    ///   - uid: <#uid description#>
-    ///   - name: <#name description#>
-    ///   - email: <#email description#>
-    /// - Returns: <#description#>
+    ///   - uid: A unique identifier
+    ///   - name: The name entered on the signup form or passed in via sign in with apple
+    ///   - email: email address used if signin with email
+    /// - Returns: Returns an data object
     static func dataDict(uid: String, name: String, email: String) -> [String: Any] {
         var data: [String: Any]
         

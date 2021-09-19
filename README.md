@@ -1,3 +1,4 @@
 # FBAuthentication
 
-A description of this package.
+A Swift Package for SwiftUI
+

@@ -8,7 +8,7 @@
 import SwiftUI
 public struct LoadingView<StartView>: View where StartView: View {
     
-    /// <#Description#>
+    /// The view that is first presented while identifying the current authentication state
     @EnvironmentObject var userInfo: UserInfo
     var startView: StartView
     var title: String
@@ -16,13 +16,13 @@ public struct LoadingView<StartView>: View where StartView: View {
     var secondaryColor: UIColor
     var logoImage: Image?
     
-    /// <#Description#>
+    /// Loading View parameters
     /// - Parameters:
-    ///   - startView: <#startView description#>
-    ///   - title: <#title description#>
-    ///   - primaryColor: <#primaryColor description#>
-    ///   - secondaryColor: <#secondaryColor description#>
-    ///   - logoImage: <#logoImage description#>
+    ///   - startView: The view that is presented once the user is authenticated
+    ///   - title: A title displayed on the login screen, defaults to "Log in"
+    ///   - primaryColor: the color used for the primary button defaults to systemOranage
+    ///   - secondaryColor: color used for the secondary button defaults to systemBlue
+    ///   - logoImage: An image to be used on the login screen.  If left as nil, will display a Firebase logo
     public init(startView: StartView,
                 title: String = "Log in",
                 primaryColor: UIColor = .systemOrange,
@@ -35,7 +35,7 @@ public struct LoadingView<StartView>: View where StartView: View {
         self.secondaryColor = secondaryColor
         self.logoImage = logoImage
     }
-    /// <#Description#>
+    /// The body of the view
     public var body: some View {
         Group {
             if userInfo.isUserAuthenticated == .undefined {

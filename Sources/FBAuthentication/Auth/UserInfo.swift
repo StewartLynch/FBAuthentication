@@ -10,9 +10,10 @@ import Foundation
 import FirebaseAuth
 
 
+/// The object injected into the environment holding the user's current authentication state and an instance of the FBUser object
 public class UserInfo: ObservableObject {
     
-    /// <#Description#>
+    /// Enum describing the current authentication state
     public enum FBAuthState {
         case undefined, signedOut, signedIn
     }
@@ -21,10 +22,10 @@ public class UserInfo: ObservableObject {
     
     var authStateDidChangeListenerHandle: AuthStateDidChangeListenerHandle?
     
-    /// <#Description#>
+    /// UserInfo properties
     /// - Parameters:
-    ///   - isUserAuthenticated: <#isUserAuthenticated description#>
-    ///   - user: <#user description#>
+    ///   - isUserAuthenticated: an enum representing the current state of connection
+    ///   - user: The FBUser object
     public init(isUserAuthenticated: Published<FBAuthState>
                 = Published<FBAuthState>.init(wrappedValue:.undefined),
                 user: Published<FBUser> = Published<FBUser>.init(wrappedValue: FBUser(uid: "",
@@ -34,7 +35,7 @@ public class UserInfo: ObservableObject {
         self._isUserAuthenticated  = isUserAuthenticated
     }
     
-    /// <#Description#>
+    /// Handles the change of authentication state
     func configureFirebaseStateDidChange() {
         
         authStateDidChangeListenerHandle = Auth.auth().addStateDidChangeListener({ (_, user) in
