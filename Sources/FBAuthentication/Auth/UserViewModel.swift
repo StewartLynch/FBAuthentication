@@ -6,7 +6,7 @@
 //  Copyright © 2020 CreaTECH Solutions. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 struct UserViewModel {
     var email: String = ""
@@ -26,9 +26,9 @@ struct UserViewModel {
     
     func isEmailValid(_email: String) -> Bool {
         // Password must be 8 chars, contain a capital letter and a number
-        let passwordTest = NSPredicate(format: "SELF MATCHES %@",
-                                       "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
-        return passwordTest.evaluate(with: email)
+            let passwordTest = NSPredicate(format: "SELF MATCHES %@",
+                                           "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
+            return passwordTest.evaluate(with: email)
     }
     
     
@@ -68,6 +68,7 @@ struct UserViewModel {
     
     
     var validEmailAddressText:String {
+        
         if isEmailValid(_email: email) {
             return ""
         } else {

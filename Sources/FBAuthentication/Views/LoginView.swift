@@ -24,7 +24,7 @@ struct LoginView: View {
         }
             .sheet(isPresented: $showSheet) { [action] in
                 if action == .signUp {
-                    SignUpView(primaryColor: primaryColor)
+                    SignUpView(primaryColor: primaryColor, secondaryColor: secondaryColor)
                 } else {
                     ForgotPasswordView(primaryColor: primaryColor)
                 }
