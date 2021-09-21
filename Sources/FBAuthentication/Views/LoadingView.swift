@@ -47,8 +47,11 @@ public struct LoadingView<StartView>: View where StartView: View {
                         .foregroundColor(Color(secondaryColor))
                     LoginView(primaryColor: primaryColor, secondaryColor: secondaryColor)
                     if logoImage != nil {
-                        logoImage
+                        logoImage!
+                            .resizable()
+                            .scaledToFit()
                             .padding()
+                            .frame(width: 120, height: 120)
                     } else {
                         firebaseLogo
                         .padding(.top)
