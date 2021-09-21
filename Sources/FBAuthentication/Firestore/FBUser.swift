@@ -10,8 +10,8 @@ import Foundation
 
 /// The User object created when the user authenticates.
 public struct FBUser {
-    let uid: String
-    public let name: String
+    public let uid: String
+    public var name: String
     let email: String
     
     // App Specific properties can be added here

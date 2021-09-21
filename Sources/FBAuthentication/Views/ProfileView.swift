@@ -8,17 +8,49 @@
 
 import SwiftUI
 
-struct ProfileView: View {
+public struct ProfileView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var userInfo: UserInfo
     @State private var providers: [FBAuth.ProviderType] = []
-    @Binding var canDelete: Bool
-    var body: some View {
+    @State private var canDelete = false
+    @State private var fullname = ""
+    var primaryColor: UIColor
+    
+    public init(primaryColor: UIColor = .systemOrange) {
+        self.primaryColor = primaryColor
+    }
+    public var body: some View {
         ZStack {
             VStack {
                 Text(userInfo.user.name)
                     .font(.title)
-                Text(canDelete ? "DO YOU REALLY WANT TO DELETE?" : "You are logged in as \(userInfo.user.email). Deleting your account will delete all content and remove your information from the database.  You must first re-authenticate")
+                if !canDelete {
+                    HStack {
+                        TextInputView("Full Name", text: $fullname)
+                        Button {
+                            FBFirestore.updateUserName(with: fullname, uid: userInfo.user.uid) { result in
+                                switch result {
+                                case .success(_):
+                                    print("success")
+                                    userInfo.user.name = fullname
+                                    presentationMode.wrappedValue.dismiss()
+                                case .failure(let error):
+                                    print(error.localizedDescription)
+                                }
+                            }
+                        } label: {
+                            Text("Update")
+                                .padding(.vertical, 15)
+                                .frame(width: 100)
+                                .background(Color(primaryColor))
+                                .cornerRadius(8)
+                                .foregroundColor(.white)
+                                .opacity(!fullname.isEmpty ? 1 : 0.75)
+                        }.disabled(fullname.isEmpty)
+                    }
+                    .padding()
+                }
+                Text(canDelete ? "DO YOU REALLY WANT TO DELETE?" : "Deleting your account will delete all content and remove your information from the database.  You must first re-authenticate")
                 HStack {
                     Button("Cancel") {
                         canDelete = false
@@ -32,7 +64,20 @@ struct ProfileView: View {
                     .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
                     Button(canDelete ? "DELETE ACCOUNT" : "Authenticate") {
                         if canDelete {
-                            presentationMode.wrappedValue.dismiss()
+                            FBFirestore.deleteUserData(uid: userInfo.user.uid) { result in
+                                switch result {
+                                case .success:
+                                    FBAuth.deleteUser { result in
+                                        if case let .failure(error) = result {
+                                            print(error.localizedDescription)
+                                        }
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                case .failure(let error):
+                                    print(error.localizedDescription)
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            }
                         } else {
                             withAnimation {
                             providers = FBAuth.getProviders()
@@ -52,12 +97,14 @@ struct ProfileView: View {
             if !providers.isEmpty {
                 ReAuthenticateView(providers: $providers, canDelete: $canDelete)
             }
+        }.onAppear {
+            fullname = userInfo.user.name
         }
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(canDelete: .constant(false)).environmentObject(UserInfo())
+        ProfileView().environmentObject(UserInfo())
     }
 }

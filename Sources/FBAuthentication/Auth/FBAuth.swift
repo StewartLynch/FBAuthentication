@@ -291,7 +291,7 @@ public struct FBAuth {
     
     /// Function called to delete the entry in the Firestore authentication and the user collection corresponding to the user
     /// - Parameter completion: completion handler dealing with response
-    static func deleteUser(completion: @escaping (Result<Bool,Error>) -> Void) {
+    public static func deleteUser(completion: @escaping (Result<Bool,Error>) -> Void) {
         if let user = Auth.auth().currentUser {
             user.delete { error in
                 if let error = error {

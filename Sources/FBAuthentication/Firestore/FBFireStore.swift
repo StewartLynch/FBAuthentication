@@ -7,7 +7,7 @@
 //
 import FirebaseFirestore
 
-enum FBFirestore {
+public enum FBFirestore {
 
     static func retrieveFBUser(uid: String, completion: @escaping (Result<FBUser, Error>) -> ()) {
         let reference = Firestore
@@ -27,6 +27,18 @@ enum FBFirestore {
             }
         }
         
+    }
+    
+    static func updateUserName(with newName: String, uid: String, completion: @escaping (Result<Bool, Error>) -> Void) {
+        let reference = Firestore.firestore().collection(FBKeys.CollectionPath.users)
+        .document(uid)
+        reference.setData(["name": newName], merge: true) { err in
+            if let err = err {
+                completion(.failure(err))
+                return
+            }
+            completion(.success(true))
+        }
     }
     
     static func mergeFBUser(_ data: [String: Any], uid: String, completion: @escaping (Result<Bool, Error>) -> ()) {
@@ -62,7 +74,7 @@ enum FBFirestore {
         }
     }
     
-    static func deleteUserData(uid: String, completion: @escaping (Result<Bool,Error>) -> Void) {
+   public static func deleteUserData(uid: String, completion: @escaping (Result<Bool,Error>) -> Void) {
         let reference = Firestore
             .firestore()
             .collection(FBKeys.CollectionPath.users)
