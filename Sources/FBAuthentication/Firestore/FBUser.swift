@@ -16,6 +16,11 @@ public struct FBUser {
     
     // App Specific properties can be added here
     
+    /// The FBUser object
+    /// - Parameters:
+    ///   - uid: the UserID
+    ///   - name: the name provided
+    ///   - email: the email address provided
    public init(uid: String, name: String, email: String) {
         self.uid = uid
         self.name = name

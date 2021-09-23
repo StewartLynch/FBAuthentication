@@ -7,8 +7,13 @@
 //
 import FirebaseFirestore
 
+/// A The functions used by the package to retrieve the user information, update and delete account
 public enum FBFirestore {
-
+    
+    /// Retrieves the FBUser instasnce
+    /// - Parameters:
+    ///   - uid: The userID
+    ///   - completion: a result providing the instance or an error
     static func retrieveFBUser(uid: String, completion: @escaping (Result<FBUser, Error>) -> ()) {
         let reference = Firestore
             .firestore()
@@ -29,6 +34,11 @@ public enum FBFirestore {
         
     }
     
+    /// Upates the user name
+    /// - Parameters:
+    ///   - newName: new name provided
+    ///   - uid: the unique userID
+    ///   - completion: the result providing a success or an error
     static func updateUserName(with newName: String, uid: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         let reference = Firestore.firestore().collection(FBKeys.CollectionPath.users)
         .document(uid)
@@ -41,6 +51,11 @@ public enum FBFirestore {
         }
     }
     
+    /// Creates the new user
+    /// - Parameters:
+    ///   - data: the name and email address provided
+    ///   - uid: the unique ID generated
+    ///   - completion: the result providing a success or an error
     static func mergeFBUser(_ data: [String: Any], uid: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         let reference = Firestore
             .firestore()
@@ -56,6 +71,10 @@ public enum FBFirestore {
     }
     
     
+    /// retrieves the document snapshot for the user collection
+    /// - Parameters:
+    ///   - reference: the document reference
+    ///   - completion: a completion handler providing the resulting data or an error
     fileprivate static func getDocument(for reference: DocumentReference, completion: @escaping (Result<[String : Any], Error>) -> ()) {
         reference.getDocument { (documentSnapshot, err) in
             if let err = err {
@@ -74,6 +93,10 @@ public enum FBFirestore {
         }
     }
     
+    /// Deletes the user account
+    /// - Parameters:
+    ///   - uid: the unique user ID
+    ///   - completion: a completion result of a success or an error
    public static func deleteUserData(uid: String, completion: @escaping (Result<Bool,Error>) -> Void) {
         let reference = Firestore
             .firestore()
