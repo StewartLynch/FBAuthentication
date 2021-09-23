@@ -1,6 +1,6 @@
 # FBAuthentication
 
-A Swift Pacakage for adding a turnkey signup/signin to Firebase workflow for your SwiftUI apps.
+A Swift Paakage for adding a turnkey sign up/sign in to Firebase workflow for your SwiftUI apps.
 After configuring your app for Firebase/Firestore connectivity, a single line of code will create the workflow for signing up and signing in to a Firebase account.
 
 #### Features
@@ -11,9 +11,10 @@ After configuring your app for Firebase/Firestore connectivity, a single line of
 * Custom colors and project image
 
 #### Setup and Installation
-For detailed instructions and link to video see:
+For detailed instructions and link to video see the documentation page: https://stewartlynch.github.io/FBAuthentication/
 
-TLDR
+### TLDR
+
 1. Create your XCode project and copy the Bundle ID.
 2. Log in to the Firebase Console and create a new project.
 3. Add a new iOS App and enter your Bundle ID for the app.
@@ -48,30 +49,13 @@ Implement logging out using
     }
 ```
 
-#### Account Deletion
-1. Create an @State property to manage the `can delete` state of your user after reauthentication
+#### Account Profile
+
+To access the profile where you will be able to update the user name or delete the account and all related data, present a sheet to the **ProfileView**
+
 ```
-@State private var canDelete = false
-```
-Present a sheet to the profileView passing in your `canDelete` property as a binding, with an onDismiss callback as follows
-```
-.sheet(isPresented: $showProfile, onDismiss: {
-    if canDelete {
-        FBFirestore.deleteUserData(uid: userInfo.user.uid) { result in
-            switch result {
-            case .success:
-                FBAuth.deleteUser { result in
-                    if case let .failure(error) = result {
-                        print(error.localizedDescription)
-                    }
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-    }
-}) {
-    ProfileView(canDelete: $canDelete)
+.sheet(isPresented: $showProfile {
+    ProfileView()
 }
 ```
 
