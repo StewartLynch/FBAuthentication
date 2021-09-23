@@ -1,0 +1,689 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; --title-bar-height: 20px; }
+.mac-os-11 { --title-bar-height: 28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit; background-repeat: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) { 
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right-width: 0px; background-color: inherit; }
+.CodeMirror-linenumber { }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; position: relative !important; background-position: inherit; background-repeat: inherit; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; background-position: 0px 0px; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print { 
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-top-left-radius: 10px; border-top-right-radius: 10px; border-bottom-right-radius: 10px; border-bottom-left-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) { 
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background-color: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; }
+a.md-print-anchor { white-space: pre !important; border: none !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; text-shadow: initial !important; background-position: 0px 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom-width: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background-color: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print { 
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-require-zoom-fix { height: auto; margin-top: 16px; margin-bottom: 16px; }
+.md-require-zoom-fix foreignObject { font-size: var(--mermaid-font-zoom); }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex: 2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) { 
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) { 
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.428571429rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left-width: 28px; border-left-style: solid; border-left-color: transparent; border-right-width: 28px; border-right-style: solid; border-right-color: transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right-width: 8px; border-right-style: solid; border-right-color: transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right-width: 1px; border-right-style: solid; border-right-color: rgb(221, 221, 221); background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; white-space: nowrap; background-position: inherit; background-repeat: inherit; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; background-position: inherit; background-repeat: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; border: none !important; background-position: 0px 0px !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-width: 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; word-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; background-position: 0px 0px; }
+.CodeMirror-wrap pre { word-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right-width: 30px; border-right-style: solid; border-right-color: transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right-style: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right-style: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background-color: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print { 
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+ :root {--mermaid-font-zoom:1em ;}  @media print { @page {margin: 0 0 0 0;} body.typora-export {padding-left: 0; padding-right: 0;} #write {padding:0;}}
+</style><title>README</title>
+</head>
+<body class='typora-export'><div class='typora-export-content'>
+<div id='write'  class=''><p>&nbsp;</p><h1 id='fbauthentication'><span>FBAuthentication</span></h1><h2 id='introduction'><span>Introduction</span></h2><p><span>A Swift Package for implementing a turnkey solution for signing up and signing in to Firebase using </span><strong><span>email/password</span></strong><span> or </span><strong><span>apple</span></strong><span>.</span></p><p><span>Solution facilitates ability to request </span><strong><span>password reset</span></strong><span> for email/password sign in as well as </span><strong><span>account deletion</span></strong><span> for both.</span></p><p><span>Watch this video and/or follow the documentation.</span></p><iframe width="560" height="315" src="https://www.youtube.com/embed/oCKwjK66icc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" style="cursor: pointer;" href="#fbauthentication">FBAuthentication</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n3"><a class="md-toc-inner" style="cursor: pointer;" href="#introduction">Introduction</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n9"><a class="md-toc-inner" style="cursor: pointer;" href="#create-your-xcode-project">Create Your Xcode Project</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n11"><a class="md-toc-inner" style="cursor: pointer;" href="#copy-the-bundle-identifier">Copy the Bundle Identifier</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n14"><a class="md-toc-inner" style="cursor: pointer;" href="#create-the-firebase-project">Create the Firebase Project</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n52"><a class="md-toc-inner" style="cursor: pointer;" href="#add-authentication-and-clouds-firestore">Add Authentication and Clouds Firestore</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n54"><a class="md-toc-inner" style="cursor: pointer;" href="#authentication-1">Authentication</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n64"><a class="md-toc-inner" style="cursor: pointer;" href="#firestore-database">Firestore Database</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n82"><a class="md-toc-inner" style="cursor: pointer;" href="#enabling-your-xcode-application-for-sign-in-with-apple">Enabling your Xcode application for Sign in with Apple</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n84"><a class="md-toc-inner" style="cursor: pointer;" href="#apple-developer-account">Apple Developer Account</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n97"><a class="md-toc-inner" style="cursor: pointer;" href="#xcode-app-signing-capabilities">Xcode app signing capabilities</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n107"><a class="md-toc-inner" style="cursor: pointer;" href="#add-the-fbauthentication-package-to-xcode">Add the FBAuthentication Package to Xcode</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n119"><a class="md-toc-inner" style="cursor: pointer;" href="#configure-firebase">Configure Firebase</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n132"><a class="md-toc-inner" style="cursor: pointer;" href="#designing-your-start-view">Designing your Start View</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n142"><a class="md-toc-inner" style="cursor: pointer;" href="#update-contentview">Update ContentView</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n155"><a class="md-toc-inner" style="cursor: pointer;" href="#test">Test</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n157"><a class="md-toc-inner" style="cursor: pointer;" href="#create-an-account-using-sign-up">Create an account using Sign Up</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n168"><a class="md-toc-inner" style="cursor: pointer;" href="#verify-firebase-console">Verify Firebase Console</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n170"><a class="md-toc-inner" style="cursor: pointer;" href="#authentication-2">Authentication</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n173"><a class="md-toc-inner" style="cursor: pointer;" href="#user-collection-1">User Collection</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n178"><a class="md-toc-inner" style="cursor: pointer;" href="#create-a-log-out-button">Create a Log Out Button</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n187"><a class="md-toc-inner" style="cursor: pointer;" href="#create-an-account-using-continue-with-apple">Create an account using Continue with Apple</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n201"><a class="md-toc-inner" style="cursor: pointer;" href="#verify-account-and-user-collection-created-on-firebase-console">Verify Account and User collection created on Firebase Console.</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n204"><a class="md-toc-inner" style="cursor: pointer;" href="#authentication-3">Authentication</a></span><span role="listitem" class="md-toc-item md-toc-h5" data-ref="n206"><a class="md-toc-inner" style="cursor: pointer;" href="#user-collection-2">User Collection</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n208"><a class="md-toc-inner" style="cursor: pointer;" href="#forgot-password">Forgot Password</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n213"><a class="md-toc-inner" style="cursor: pointer;" href="#profile">Profile</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n215"><a class="md-toc-inner" style="cursor: pointer;" href="#add-a-profile-button">Add a Profile Button</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n231"><a class="md-toc-inner" style="cursor: pointer;" href="#update-user-name">Update user name</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n237"><a class="md-toc-inner" style="cursor: pointer;" href="#delete-account">Delete Account</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n239"><a class="md-toc-inner" style="cursor: pointer;" href="#emailpassword-2">Email/Password</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n244"><a class="md-toc-inner" style="cursor: pointer;" href="#apple-2">Apple</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n247"><a class="md-toc-inner" style="cursor: pointer;" href="#confirm-account-removal">Confirm Account Removal</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n249"><a class="md-toc-inner" style="cursor: pointer;" href="#custom-colors-and-icons">Custom Colors and icons</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n251"><a class="md-toc-inner" style="cursor: pointer;" href="#adding-colors-and-a-login-view-image">Adding Colors and a Login view image</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n257"><a class="md-toc-inner" style="cursor: pointer;" href="#logoimage">logoImage</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n259"><a class="md-toc-inner" style="cursor: pointer;" href="#primarycolor-and-secondarycolor">primaryColor and SecondaryColor</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n263"><a class="md-toc-inner" style="cursor: pointer;" href="#loadingview">LoadingView</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n268"><a class="md-toc-inner" style="cursor: pointer;" href="#profileview">ProfileView</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n272"><a class="md-toc-inner" style="cursor: pointer;" href="#what-firebase-modules-are-installed">What Firebase Modules are installed</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n282"><a class="md-toc-inner" style="cursor: pointer;" href="#cautions">Cautions</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n285"><a class="md-toc-inner" style="cursor: pointer;" href="#modifying-the-package">Modifying the package</a></span></p></div><h2 id='create-your-xcode-project'><span>Create Your Xcode Project</span></h2><p><span>The first thing you need to do is to create a Firebase project.</span></p><h3 id='copy-the-bundle-identifier'><span>Copy the Bundle Identifier</span></h3><p><span>Once you have created your Xcode project where you want to install the Firebase Authentication Package, you will need your BundleID.  Make sure that your domain is us used for your project.</span></p><p><img src="Images/image-20210917094115700.png" referrerpolicy="no-referrer" alt="image-20210917094115700"></p><h2 id='create-the-firebase-project'><span>Create the Firebase Project</span></h2><p><span>The next step is to log in to the Firebase Console by going to </span><a href='https://firebase.google.com' target='_blank' class='url'>https://firebase.google.com</a><span> and then, on the top right of the menu bar, make sure you are logged in with your google account and click on </span><strong><span>Go to console</span></strong></p><p><img src="Images/image-20210917095215239.png" referrerpolicy="no-referrer" alt="image-20210917095215239"></p><p><span>Once there, depending on whether or not you have ever created a project or not, you will see one of these two buttons</span></p><p><img src="Images/NewProject.png" referrerpolicy="no-referrer" alt="NewProject"></p><p><span>Click on one of them to create a new project.</span></p><ol start='' ><li><span>Give your app a name (I usually give it the same name as my Xcode project) then click on </span><strong><span>Continue</span></strong></li><li><span>At the next screen, I am not going to add Google Analytics so I will turn this off.  </span></li><li><span>Next, cl on </span><strong><span>Create Project</span></strong><span>.  Your project will now be set up and a progress wheel will show you the process and then display a </span><strong><span>Continue</span></strong><span> button when completed.</span></li></ol><p><img src="Images/image-20210917095927595.png" referrerpolicy="no-referrer" alt="image-20210917095927595"></p><ol start='4' ><li><span>When the project window is displayed, you need to add your Xcode iOS App to the project, so click on the </span><strong><span>iOS</span></strong><span> button to get started.</span></li></ol><p><img src="Images/image-20210917100158610.png" referrerpolicy="no-referrer" alt="image-20210917100158610"></p><ol start='5' ><li><p><span>Enter the required information:</span></p><ol start='' ><li><strong><span>Bundle ID:</span></strong><span> Copy the Bundle Identifier from your Xcode project (See above) and paste it into this field.</span></li><li><span>Enter a name for your app (I generally use the same name as the app again)</span></li><li><span>Click on </span><strong><span>Register App</span></strong></li></ol></li></ol><p><img src="Images/image-20210917100738073.png" referrerpolicy="no-referrer" alt="image-20210917100738073"></p><ol start='6' ><li><span>At the next screen, click on the </span><strong><span>Download GoogleServices-info.plist</span></strong><span> button to download the plist and drag it into your Xcode project navigator.  Make sure you specify to copy items if needed then click on </span><strong><span>Next</span></strong></li></ol><p><img src="Images/image-20210917100937070.png" referrerpolicy="no-referrer" alt="image-20210917100937070"></p><ol start='7' ><li><span>Return to the console and click on </span><strong><span>Next</span></strong><span>.</span></li><li><span>You can ignore the next screen where is talks about installing the SDK,  I will be covering that next, so simply click on </span><strong><span>Next</span></strong><span> and then on the next screen, </span><strong><span>Next</span></strong><span> again until you reach the screen that has the </span><img src="Images/image-20210917101511755.png" referrerpolicy="no-referrer" alt="image-20210917101511755"><span> and click on it to go to the console.</span></li></ol><h2 id='add-authentication-and-clouds-firestore'><span>Add Authentication and Clouds Firestore</span></h2><p><span>Your app now needs to have both </span><strong><span>Authentication</span></strong><span> and </span><strong><span>Firestore Database</span></strong><span> added.</span></p><h4 id='authentication-1'><span>Authentication</span></h4><ol start='' ><li><p><span>Click on </span><img src="Images/image-20210917152106474.png" referrerpolicy="no-referrer" alt="image-20210917152106474"><span> in the menu at the side of your app console.</span></p></li><li><p><span>On the next screen, click on </span><strong><span>Get Started</span></strong><span> and then on the following screen, you can enable </span><strong><span>Email/Password</span></strong><span> and </span><strong><span>Apple</span></strong></p><h5 id='emailpassword-1'><span>Email/Password</span></h5><p><span>Click on </span><img src="Images/EditConfiguration.png" referrerpolicy="no-referrer" alt="EditConfiguration"><span>beside Email/Password and on the next screen, click on </span><strong><span>enable</span></strong><span> and then click on </span><strong><span>Save</span></strong><span>.</span></p><h5 id='apple-1'><span>Apple</span></h5><p><span>Repeat for </span><strong><span>Apple</span></strong><span>.  There is no need to do anything else for sign in with apple on the console, but you will have to configure your Xcode application.  That will be the next step.</span></p></li></ol><h4 id='firestore-database'><span>Firestore Database</span></h4><ol start='' ><li><p><span>Click on </span><img src="Images/image-20210917153146556.png" referrerpolicy="no-referrer" alt="image-20210917153146556"><span> in the menu at the side of your app console</span></p></li><li><p><span>At the next screen, click on </span><strong><span>Create Database</span></strong></p></li><li><p><span>You can choose to start your app in </span><strong><span>test mode</span></strong><span> but you will eventually need to configure the security rules within 30 days.  Choose this option initially and then click on </span><strong><span>Next</span></strong></p></li><li><p><span>I usually leave the Firestore location at the default selected and then click on </span><strong><span>Enable</span></strong><span>.  The provisioning of the database will now begin.  Once it has completed, your configuration in the Firebase console for this app is now completed but you must first copy your Project id</span></p></li><li><p><span>Return to the app console and click on the Project Overview gear icon and choose Project Settings** </span><img src="Images/image-20210917155456293.png" referrerpolicy="no-referrer" alt="image-20210917155456293"></p></li><li><p><span>Copy and save if necessary your </span><strong><span>Project ID</span></strong></p><p><img src="Images/image-20210917155712033.png" referrerpolicy="no-referrer" alt="image-20210917155712033"></p></li><li><p><span>And while you are at it, if you have not done so already, change the Public-facing name to one that will reflect your app.  This name will be used in the </span><strong><span>reset password</span></strong><span> email.</span></p><p><img src="Images/image-20210921115958483.png" referrerpolicy="no-referrer" alt="image-20210921115958483"></p></li></ol><h2 id='enabling-your-xcode-application-for-sign-in-with-apple'><span>Enabling your Xcode application for Sign in with Apple</span></h2><p><span>The final step before we add the Swift package is to enable your application for Sign In with Apple.</span></p><h3 id='apple-developer-account'><span>Apple Developer Account</span></h3><ol start='' ><li><p><span>Log in to your Apple Developer account at </span><a href='https://developer.apple.com' target='_blank' class='url'>https://developer.apple.com</a><span> </span></p></li><li><p><span>Click on </span><strong><span>Certificates, IDs and profiles</span></strong></p></li><li><p><span>At the next screen, click on </span><strong><span>More</span></strong><span> then </span><strong><span>Configure</span></strong></p></li><li><p><span>Click on the </span><strong><span>+</span></strong><span> besides </span><img src="Images/image-20210917155047128.png" referrerpolicy="no-referrer" alt="image-20210917155047128"><span> to registern an new </span><strong><span>email source</span></strong><span>.</span></p><p><span>The format is always the same, </span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">noreply</span>@<span class="cm-operator">&lt;</span><span class="cm-variable">ID</span><span class="cm-operator">&gt;</span><span class="cm-property">.firebaseapp.com</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>So in my case, I enter noreply@</span><strong><span>my-great-app-988c7</span></strong><span>.firebaseapp.com then click on </span><strong><span>Next</span></strong><span> and then </span><strong><span>Resister</span></strong><span> and finally </span><strong><span>Done</span></strong><span>.</span></p></li></ol><h3 id='xcode-app-signing-capabilities'><span>Xcode app signing capabilities</span></h3><ol start='' ><li><p><span>Return to your Xcode project now and click on your project to select the target</span></p></li><li><p><span>Click on the </span><strong><span>Signing &amp; Capabilities</span></strong><span> tab and click on the </span><strong><span>+</span></strong><span> button to add a new capability</span></p><p><img src="Images/image-20210917160517287.png" referrerpolicy="no-referrer" alt="image-20210917160517287"></p></li><li><p><span>Filter and add Sign In with Apple</span></p><p><img src="Images/image-20210917160923159.png" referrerpolicy="no-referrer" alt="image-20210917160923159"></p></li></ol><h2 id='add-the-fbauthentication-package-to-xcode'><span>Add the FBAuthentication Package to Xcode</span></h2><p><span>You can now add the </span><strong><span>FBAuthentication</span></strong><span> package to your Xcode project</span></p><ol start='' ><li><p><span>From the </span><strong><span>File</span></strong><span> menu, choose </span><strong><span>Add Packages..</span></strong></p></li><li><p><span>On the following screen, search for the package URL &#39;</span><a href='https://github.com/StewartLynch/FBAuthentication' target='_blank' class='url'>https://github.com/StewartLynch/FBAuthentication</a><span>&#39; and when found, click on </span><strong><span>Add Package</span></strong>
+<img src="Images/image-20210917162623226.png" referrerpolicy="no-referrer" alt="image-20210917162623226"></p><p><span>The process will start to verify that it is available and eventually you will be presented with this screen where you can simply click on </span><strong><span>Add Package</span></strong><span> once again.</span></p><p><img src="Images/image-20210918161217142.png" referrerpolicy="no-referrer" alt="image-20210918161217142"></p></li></ol><p><span>All of the required dependencies will then be added to your project.  In particular, note the </span><strong><span>FBAuthentication</span></strong><span> dependency.  This is the one that contains all of the views, classes and structs related to the Firebase authentication process.</span></p><p><img src="Images/image-20210918162446263.png" referrerpolicy="no-referrer" alt="image-20210918162446263"></p><p><span>At this point, I also recommend that you Build your app</span></p><h2 id='configure-firebase'><span>Configure Firebase</span></h2><ol start='' ><li><span>In the start point for your app (the file marked with  </span><strong><span>@main</span></strong><span>, add</span></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-def">Firebase</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-def">FBAuthentication</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 44px;"></div><div class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre><ol start='2' ><li><p><span>Create an initializer for your app struct and within the initializer, add the FirebaseApp configure function</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">init</span><span class="cm-punctuation">()</span> <span class="cm-punctuation">{</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">FirebaseApp</span><span class="cm-property">.configure</span><span class="cm-punctuation">()</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre></li><li><p><span>Inject an instance of the UserInfo object into the environment.  This object is part of the FBAuthentication package and is a ViewModel that contains an instance of a </span><strong><span>FBUser</span></strong><span> that will be used to log in to Firebase using the the specified authentication method (email or apple) and will store the FBUser.name (the person&#39;s name) in a FireStore user collection.</span>
+<span>It also maintains the authentication state and watches for changes.</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">ContentView</span><span class="cm-punctuation">()</span><span class="cm-property">.environmentObject</span><span class="cm-punctuation">(</span><span class="cm-variable">UserInfo</span><span class="cm-punctuation">())</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>The final stuct will look something like this</span>
+<img src="Images/image-20210918163213843.png" referrerpolicy="no-referrer" alt="image-20210918163213843"></p></li></ol><h2 id='designing-your-start-view'><span>Designing your Start View</span></h2><p><span>Before you can implement the Authentication process, you have to design a SwiftUI view that will be the starting point for your application once the authentication has completed.  You can give your start view any name you like, but for testing purposes I am am going to call my view, </span><strong><span>HomeView</span></strong></p><ol start='' ><li><span>import </span><strong><span>FBAuthentication</span></strong></li><li><span>Create an EnvironmentObject for our userInfo</span></li><li><span>Change the text view to display the </span><strong><span>userInfo.user.name</span></strong></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 251px; left: 49px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-def">SwiftUI</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-def">FBAuthentication</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">struct</span> <span class="cm-def">HomeView</span><span class="cm-punctuation">:</span> <span class="cm-variable">View</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-attribute">@EnvironmentObject</span> <span class="cm-keyword">var</span> <span class="cm-def">userInfo</span><span class="cm-punctuation">:</span> <span class="cm-variable">UserInfo</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">var</span> <span class="cm-def">body</span><span class="cm-punctuation">:</span> <span class="cm-variable">some</span> <span class="cm-variable">View</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">Text</span><span class="cm-punctuation">(</span><span class="cm-string">"Logged in as \(</span><span class="cm-variable">userInfo</span><span class="cm-property">.user.name</span><span class="cm-string">)"</span><span class="cm-punctuation">)</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">struct</span> <span class="cm-def">HomeView_Previews</span><span class="cm-punctuation">:</span> <span class="cm-variable">PreviewProvider</span> <span class="cm-punctuation">{</span></span></pre><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">var</span> <span class="cm-def">previews</span><span class="cm-punctuation">:</span> <span class="cm-variable">some</span> <span class="cm-variable">View</span> <span class="cm-punctuation">{</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">HomeView</span><span class="cm-punctuation">()</span><span class="cm-property">.e</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 330px;"></div><div class="CodeMirror-gutters" style="display: none; height: 330px;"></div></div></div></pre><h2 id='update-contentview'><span>Update ContentView</span></h2><p><span>The final stage before testing is to update ContentView</span></p><p><span>This is where the power of FBAuthentication shines.</span></p><ol start='' ><li><span>import FBAuthentication</span></li><li><span>Create an EnvironmentObject for userInfo</span></li><li><span>change the body to be a instance of LoadingView, passing in the HomeView you created as the startView</span></li><li><span>Stop the preview from complaining, but adding in an instance of UserInfo into the the environment</span></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-def">SwiftUI</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">import</span> <span class="cm-def">FBAuthentication</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">struct</span> <span class="cm-def">ContentView</span><span class="cm-punctuation">:</span> <span class="cm-variable">View</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-attribute">@EnvironmentObject</span> <span class="cm-keyword">var</span> <span class="cm-def">userInfo</span><span class="cm-punctuation">:</span> <span class="cm-variable">UserInfo</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">var</span> <span class="cm-def">body</span><span class="cm-punctuation">:</span> <span class="cm-variable">some</span> <span class="cm-variable">View</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">LoadingView</span><span class="cm-punctuation">(</span><span class="cm-variable">startView</span><span class="cm-punctuation">:</span> <span class="cm-variable">HomeView</span><span class="cm-punctuation">())</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">struct</span> <span class="cm-def">ContentView_Previews</span><span class="cm-punctuation">:</span> <span class="cm-variable">PreviewProvider</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">static</span> <span class="cm-keyword">var</span> <span class="cm-def">previews</span><span class="cm-punctuation">:</span> <span class="cm-variable">some</span> <span class="cm-variable">View</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">ContentView</span><span class="cm-punctuation">()</span><span class="cm-property">.environmentObject</span><span class="cm-punctuation">(</span><span class="cm-variable">UserInfo</span><span class="cm-punctuation">())</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 330px;"></div><div class="CodeMirror-gutters" style="display: none; height: 330px;"></div></div></div></pre><h2 id='test'><span>Test</span></h2><p><span>You are at the point now where you can test the functionality so far.</span></p><h3 id='create-an-account-using-sign-up'><span>Create an account using Sign Up</span></h3><ol start='' ><li><span>Run the application in the simulator.</span></li><li><span>At the login screen, tap on the </span><strong><span>Sign up</span></strong><span> button then enter your full name and a valid email and password and tap on </span><strong><span>Register</span></strong><span>.</span>
+<img src="Images/image-20210920215430747.png" referrerpolicy="no-referrer" alt="image-20210920215430747"></li></ol><p><span>Upon a successful log in, you will be taken to your </span><strong><span>Home</span></strong><span> screen and the text view in the center will display the name that you entered when signing up</span></p><p><img src="Images/image-20210920215853178.png" referrerpolicy="no-referrer" alt="image-20210920215853178"></p><ol start='3' ><li><span>Stop running your app and run it again. You will find that you will not have to log in again.  Your login status will remain as logged in until you issue a log out command.</span></li></ol><h3 id='verify-firebase-console'><span>Verify Firebase Console</span></h3><p><span>Log in to your Firebase console to verify that an authentication and a user record has been created for your application.</span></p><h4 id='authentication-2'><span>Authentication</span></h4><p><span>In your project, on the Authentication tab you will see an entry for your newly created user.  This record is for authentication only.  It will display a record showing an envelope icon designating this as a record created using sign in with email/password</span></p><p><img src="Images/image-20210920220507915.png" referrerpolicy="no-referrer" alt="image-20210920220507915"></p><h4 id='user-collection-1'><span>User Collection</span></h4><p><span>A new </span><strong><span>User</span></strong><span> collection has been created in the Firestore database along with a record for this account. If you access the </span><strong><span>Firestore Database</span></strong><span> tab you will be able to drill down on your data to see the users collection along with a single document.  This document represents the user and if you click on it, you will see the three fields that are stored in this collection.</span></p><p><img src="Images/image-20210920220817952.png" referrerpolicy="no-referrer" alt="image-20210920220817952"></p><blockquote><p><strong><span>Note:</span></strong><span> For ease of management, it is recommended that you create all new collections as sub collections of the user.  That way, you will be able to delete a user and all corresponding data will be deleted along with it.</span></p></blockquote><h3 id='create-a-log-out-button'><span>Create a Log Out Button</span></h3><p><span>Somewhere within your app, and I recommend the Home View, create a button that will handle the log out function.  </span></p><ol start='' ><li><span>For testing purposes, embed your textView in a VStack and create the button below it, calling the Logout function like this.</span></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" spellcheck="false" lang="swift" style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">struct</span> <span class="cm-def">HomeView</span><span class="cm-punctuation">:</span> <span class="cm-variable">View</span> <span class="cm-punctuation">{</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-attribute">@EnvironmentObject</span> <span class="cm-keyword">var</span> <span class="cm-def">userInfo</span><span class="cm-punctuation">:</span> <span class="cm-variable">UserInfo</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">var</span> <span class="cm-def">body</span><span class="cm-punctuation">:</span> <span class="cm-variable">some</span> <span class="cm-variable">View</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">VStack</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">Text</span><span class="cm-punctuation">(</span><span class="cm-string">"Logged in as \(</span><span class="cm-variable">userInfo</span><span class="cm-property">.user.name</span><span class="cm-string">)"</span><span class="cm-punctuation">)</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">Button</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">FBAuth</span><span class="cm-property">.logout</span> <span class="cm-punctuation">{</span> <span class="cm-variable">result</span> <span class="cm-keyword">in</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">switch</span> <span class="cm-variable">result</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">case</span> <span class="cm-property">.success</span><span class="cm-punctuation">(</span><span class="cm-atom">_</span><span class="cm-punctuation">):</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">print</span><span class="cm-punctuation">(</span><span class="cm-string">"Logged out"</span><span class="cm-punctuation">)</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">case</span> <span class="cm-property">.failure</span><span class="cm-punctuation">(</span><span class="cm-keyword">let</span> <span class="cm-def">error</span><span class="cm-punctuation">):</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">print</span><span class="cm-punctuation">(</span><span class="cm-variable">error</span><span class="cm-property">.localizedDescription</span><span class="cm-punctuation">)</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-punctuation">}</span> <span class="cm-variable">label</span><span class="cm-punctuation">:</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">Text</span><span class="cm-punctuation">(</span><span class="cm-string">"Log Out"</span><span class="cm-punctuation">)</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-punctuation">}</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 440px;"></div><div class="CodeMirror-gutters" style="display: none; height: 440px;"></div></div></div></pre><ol start='2' ><li><span>Run the app once more and tap on the Log Out button.  You should be taken directly to the </span><strong><span>Login View</span></strong><span>.</span></li></ol><h3 id='create-an-account-using-continue-with-apple'><span>Create an account using Continue with Apple</span></h3><p><span>To test and verify the signup with apple, you must run the application on a device.</span></p><ol start='' ><li><span>Tap the </span><strong><span>Continue with Apple</span></strong><span> button</span></li><li><span>At the next screen, you can choose to share your name and choose to share either your email address or hide your email.  Make your choose and tap on </span><strong><span>Continue</span></strong><span> to be taken to the home view</span></li></ol><p><img src="Images/image-20210920223409973.png" referrerpolicy="no-referrer" alt="image-20210920223409973"></p><ol start='3' ><li><span>Tap on Log Out to return to the login Screen</span></li><li><span>Tap on the </span><strong><span>Continue with apple</span></strong><span> button once more but this time you will be presented with only the option to continue</span></li></ol><p><img src="Images/image-20210920223629188.png" referrerpolicy="no-referrer" alt="image-20210920223629188"></p><h4 id='verify-account-and-user-collection-created-on-firebase-console'><span>Verify Account and User collection created on Firebase Console.</span></h4><p><span>Return to your Firebase console and verify that there are new entries in the Authentication tab and a new document has been added to the User collection in Firestore.</span></p><p><span>Notice that if you chose to hide your email address, the data entered has a cryptic appleId.com account.</span></p><h5 id='authentication-3'><span>Authentication</span></h5><p><img src="Images/image-20210920224255721.png" referrerpolicy="no-referrer" alt="image-20210920224255721"></p><h5 id='user-collection-2'><span>User Collection</span></h5><p><img src="Images/image-20210920224348027.png" referrerpolicy="no-referrer" alt="image-20210920224348027"></p><h3 id='forgot-password'><span>Forgot Password</span></h3><p><span>If you signed up with the </span><strong><span>email/password</span></strong><span> option and forget your password you can tap on the </span><strong><span>Forgot Password</span></strong><span> button.  You will be taken to the next screen where you can enter the email address that you used when you signed up and tap on </span><strong><span>Reset</span></strong><span>.</span></p><p><span>You will shortly receive an email notification from Firebase with instructions to click on a link to reset your password.</span></p><p><img src="Images/image-20210921120242268.png" referrerpolicy="no-referrer" alt="image-20210921120242268"></p><p><span>After submitting the new password, you will be able to log in using that new password.</span></p><h2 id='profile'><span>Profile</span></h2><p><span>A </span><strong><span>profile</span></strong><span> view is available.  On this view you will be able to </span><strong><span>update the</span></strong><span> </span><strong><span>name</span></strong><span> that was provided when or </span><strong><span>delete the account</span></strong><span> entirely from Firebase.  This is a requirement for all iOS applications so make sure that you do this.</span></p><h3 id='add-a-profile-button'><span>Add a Profile Button</span></h3><p><span>You need to first add a profile button to your application.  I suggest you do this on your Home view somewhere like the navigation bar.  For testing purposes I am going to add it as a button as part of the VStack.  The action on this button will toggle an @State boolean property that will initiate a modal sheet which will be the </span><strong><span>ProfileView</span></strong><span>.</span></p><ol start='' ><li><span>Create an @State property</span></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-attribute">@State</span> <span class="cm-keyword">private</span> <span class="cm-keyword">var</span> <span class="cm-def">showProfile</span> <span class="cm-operator">=</span> <span class="cm-atom">false</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><ol start='2' ><li><span>Create the button that will toggle this state.  In my case, I will add this after the Logout button.</span></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Button</span> <span class="cm-punctuation">{</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">showProfile</span><span class="cm-property">.toggle</span><span class="cm-punctuation">()</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span> <span class="cm-variable">label</span><span class="cm-punctuation">:</span> <span class="cm-punctuation">{</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">Text</span><span class="cm-punctuation">(</span><span class="cm-string">"Show Profile"</span><span class="cm-punctuation">)</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 110px;"></div><div class="CodeMirror-gutters" style="display: none; height: 110px;"></div></div></div></pre><ol start='3' ><li><span>Present the ProfileView as a sheet.</span></li></ol><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-property">.sheet</span><span class="cm-punctuation">(</span><span class="cm-variable">isPresented</span><span class="cm-punctuation">:</span> $<span class="cm-variable">showProfile</span><span class="cm-punctuation">)</span> <span class="cm-punctuation">{</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">ProfileView</span><span class="cm-punctuation">()</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre><p><span>Running the app and tapping on that button will display the Profile Screen</span></p><p><img src="Images/image-20210921121631469.png" referrerpolicy="no-referrer" alt="image-20210921121631469"></p><h3 id='update-user-name'><span>Update user name</span></h3><p><span>You can enter a new </span><strong><span>Full Name</span></strong><span> and tap on the </span><strong><span>Update</span></strong><span> button.</span></p><p><span>When you do so, your will be returned to the calling view and in our testing app, the Text View will reflect your updated name.  Tapp on the </span><strong><span>Show Profile</span></strong><span> button once more and you will see that update on the Profile screen.</span></p><p><img src="Images/image-20210921121955612.png" referrerpolicy="no-referrer" alt="image-20210921121955612"></p><p><span>If you log in to your Firebase console and the </span><strong><span>Firebase Firestore</span></strong><span> tab &gt; users &gt; the id for that user, you will see the name has been updated there too.</span></p><p><img src="Images/image-20210921122224477.png" referrerpolicy="no-referrer" alt="image-20210921122224477"></p><h3 id='delete-account'><span>Delete Account</span></h3><p><span>To </span><strong><span>delete</span></strong><span> an account entirely, you need to access the profile and </span><strong><span>reauthenticate</span></strong><span> with Firestore.  This will prevent someone from accessing your unlocked phone, opening the app and deleting your account without your permission.</span></p><h4 id='emailpassword-2'><span>Email/Password</span></h4><p><span>If you have signed in using email/password, when you tap on the </span><strong><span>Authenticate</span></strong><span> you will be asked to enter your password and you will be returned to a shortened profile view where you are asked to confirm.</span></p><p><span>Tap on </span><strong><span>Delete Account</span></strong><span> to delete the authentication record and the corresponding user collection.</span></p><p><span>Upon completion, you will be taken to the login screen and will no longer be able to log in using that account</span></p><p><img src="Images/image-20210921122622105.png" referrerpolicy="no-referrer" alt="image-20210921122622105"></p><h4 id='apple-2'><span>Apple</span></h4><p><span>If you signed in with apple, upon tapping the </span><strong><span>Authenticate</span></strong><span> button you will be asked to </span><strong><span>Continue with Apple</span></strong><span> and then be taken to the same screen where you are asked to confirm.</span></p><p><img src="Images/image-20210921123659314.png" referrerpolicy="no-referrer" alt="image-20210921123659314"></p><h4 id='confirm-account-removal'><span>Confirm Account Removal</span></h4><p><span>I suggest that you log in to the Firebase console to confirm that the account(s) have been removed entirely from the </span><strong><span>authentication</span></strong><span> tab and from the </span><strong><span>Firebase Firestore</span></strong><span> user collection.</span></p><h2 id='custom-colors-and-icons'><span>Custom Colors and icons</span></h2><p><span>The basics have now been explained and you can use this swift package on any of your own projects.  There are some additional things that you can do however, and that is to change the color of the buttons and the image that is displayed on the Login Screen.</span></p><h3 id='adding-colors-and-a-login-view-image'><span>Adding Colors and a Login view image</span></h3><p><span>When you present the </span><strong><span>LoadingView</span></strong><span>, you have the ability to specify a primaryColor, secondaryColor and logoImage. Similarly, when you present the Profile screen, you can choose your primaryColor for the button as well.</span></p><p><span>The buttons used on the </span><strong><span>sIgn in</span></strong><span>, </span><strong><span>sign up</span></strong><span> and </span><strong><span>forgot password</span></strong><span> screens are all use the same primaryColor and secondaryColor choices made on the LoadingView.</span></p><p><span>If none are used, the primaryColor is </span><strong><span>.systemBlue</span></strong><span> and the secondaryColor is </span><strong><span>.systemOrange</span></strong></p><p><span>The image on the login defaults to a custom image.</span></p><p><img src="Images/image-20210921125430868.png" referrerpolicy="no-referrer" alt="image-20210921125430868"></p><h4 id='logoimage'><span>logoImage</span></h4><p><span>The logoImage should be can be any image, but it will be </span><strong><span>scaled to fit</span></strong><span> within a frame of </span><strong><span>120 X 120</span></strong><span> and should be uploaded to your application&#39;s </span><strong><span>Assets.xcassets</span></strong><span> folder.</span></p><h4 id='primarycolor-and-secondarycolor'><span>primaryColor and SecondaryColor</span></h4><p><span>You can specify colors any way you like, but make sure that the colors look good in both light and dark mode.  The text within the buttons will always be white.</span></p><p><span>In this example, I have created an Image and two color assets and I named the color assets the same as my two argumentNames</span></p><p><img src="Images/image-20210921143006696.png" referrerpolicy="no-referrer" alt="image-20210921143006696"></p><h4 id='loadingview'><span>LoadingView</span></h4><p><span>With your image and optional color assets added, you can use one, two or all three in your arguments for LoadingVIew after the title, if you leave one out, the default will be used.</span></p><p><span>At the same time, you can enter a different name for the </span><strong><span>title</span></strong><span>.  The </span><strong><span>secondaryColor</span></strong><span> is the one used for the title.</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">LoadingView</span><span class="cm-punctuation">(</span><span class="cm-variable">startView</span><span class="cm-punctuation">:</span> <span class="cm-variable">MyStartView</span><span class="cm-punctuation">(),</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">title</span><span class="cm-punctuation">:</span> <span class="cm-string">"CreaTECH Login"</span><span class="cm-punctuation">,</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">primaryColor</span><span class="cm-punctuation">:</span> <span class="cm-variable">UIColor</span><span class="cm-punctuation">(</span><span class="cm-variable">named</span><span class="cm-punctuation">:</span> <span class="cm-string">"primaryColor"</span><span class="cm-punctuation">)</span><span class="cm-operator">!</span><span class="cm-punctuation">,</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">secondaryColor</span><span class="cm-punctuation">:</span> <span class="cm-variable">UIColor</span><span class="cm-punctuation">(</span><span class="cm-variable">named</span><span class="cm-punctuation">:</span> <span class="cm-string">"secondaryColor"</span><span class="cm-punctuation">)</span><span class="cm-operator">!</span><span class="cm-punctuation">,</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">logoImage</span><span class="cm-punctuation">:</span> <span class="cm-variable">Image</span><span class="cm-punctuation">(</span><span class="cm-string">"CTLogo"</span><span class="cm-punctuation">)</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">)</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 132px;"></div><div class="CodeMirror-gutters" style="display: none; height: 132px;"></div></div></div></pre><p><img src="Images/image-20210921143404444.png" referrerpolicy="no-referrer" alt="image-20210921143404444"></p><h4 id='profileview'><span>ProfileView</span></h4><p><span>Similarly, you can pass in a primary color as an argument when presenting the ProfileView as a sheet.</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="swift"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="swift"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-property">.sheet</span><span class="cm-punctuation">(</span><span class="cm-variable">isPresented</span><span class="cm-punctuation">:</span> $<span class="cm-variable">showProfile</span><span class="cm-punctuation">)</span> <span class="cm-punctuation">{</span></span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; <span class="cm-variable">ProfileView</span><span class="cm-punctuation">(</span><span class="cm-variable">primaryColor</span><span class="cm-punctuation">:</span> <span class="cm-variable">UIColor</span><span class="cm-punctuation">(</span><span class="cm-variable">named</span><span class="cm-punctuation">:</span> <span class="cm-string">"primaryColor"</span><span class="cm-punctuation">)</span><span class="cm-operator">!</span><span class="cm-punctuation">)</span></span></pre><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-punctuation">}</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom-width: 0px; border-bottom-style: solid; border-bottom-color: transparent; top: 66px;"></div><div class="CodeMirror-gutters" style="display: none; height: 66px;"></div></div></div></pre><p>&nbsp;</p><h2 id='what-firebase-modules-are-installed'><span>What Firebase Modules are installed</span></h2><p><span>Normally, when you install Firebase using Swift Package manager, you specify which Firebase modules you want to include in your install.  FBAuthentication uses the following:</span></p><ul><li><span>FirebaseAuth</span></li><li><span>FirebaseFirestore</span></li><li><span>FirebaseFirestoreSwift-Beta</span></li></ul><p><span>If your application is going to use additional modules such as FirebaseAnalytics or FirebaseStorage, you will have to install the Firebase package and select these additional product modules </span></p><h2 id='cautions'><span>Cautions</span></h2><blockquote><p><span>In order for this solution to be used successfully with your application, you need to ensure that all of your data for a user is stored as a subcollection of the user collection.  That way, when the  account deletion occurs, all related data will be deleted as well.  If you are using additional storage like Storage, you will have to ensure that you delete that data as well to comply with Apple&#39;s requirements.  In that case, I recommend that you fork the entire swift package and install it as a local framework where you can modify the code accordingly. See next section.</span></p></blockquote><h2 id='modifying-the-package'><span>Modifying the package</span></h2><p><span>If you want to modify the functions in the package, you are going to have to download it and install it locally.</span></p><p><span>Currently, if you drill down into the Package dependencies and try to edit one of the files, you will find that this is not possible.</span></p><p><span>What you can do is go to the package repository and download it so that you can install it as a local package.</span></p><p><span>For example:</span></p><ol start='' ><li><span>Open your project and display the Package Dependencies in your app.</span></li></ol><p><span>If you double click on FBAuthentication, you will be able to copy the URL.</span></p><p><img src="Images/image-20210921155758725.png" referrerpolicy="no-referrer" alt="image-20210921155758725"></p><ol start='2' ><li><p><span>Remove the package from your application.</span></p></li><li><p><span>Open your web browser and go to the copied URL for this swift package and download the code as a Zip file</span></p><p><img src="Images/image-20210921160125365.png" referrerpolicy="no-referrer" alt="image-20210921160125365"></p></li><li><p><span>Locate and expand the ZIP archive if necessary and and you don&#39;t have to remove the -main suffix but if you like, you can rename it as </span><strong><span>FBAuthentication</span></strong><span> instead of </span><strong><span>FBAuthentication-main</span></strong><span> then drag it into the same folder as your </span><strong><span>xcodeproj</span></strong><span> file.</span></p><p><img src="Images/image-20210921160557933.png" referrerpolicy="no-referrer" alt="image-20210921160557933"></p></li><li><p><span>Drag the folder into the project navigator.  This will add the package as a local framework and will also create all of the package dependencies </span></p><p><img src="Images/image-20210921161148150.png" referrerpolicy="no-referrer" alt="image-20210921161148150"></p></li><li><p><span>Select your project </span><strong><span>target</span></strong><span> and the </span><strong><span>General</span></strong><span> tab and in the </span><strong><span>Frameworks, Libraries and Embedded Content</span></strong><span> section click on the </span><code>+</code><span> button to add this as a framework.</span></p></li><li><p><span>Select </span><strong><span>FBAuthentication</span></strong><span> and click on </span><strong><span>Add</span></strong></p></li></ol><p><img src="Images/image-20210921161600189.png" referrerpolicy="no-referrer" alt="image-20210921161600189"></p><p><span>If you run your app once more, you will find that it executes exactly the same as it did before.  The difference is that now, you own the framework and can modify or add to the content.</span></p><blockquote><p><strong><span>Note:</span></strong><span> Make sure that if you are going to have to access classes, structs, properties or methods from outside of the framework, you are going to have to make them </span><strong><span>Public</span></strong><span>.</span></p></blockquote></div></div>
+</body>
+</html>
