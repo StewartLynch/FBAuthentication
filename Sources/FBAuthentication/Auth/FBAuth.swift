@@ -128,16 +128,9 @@ public struct FBAuth {
                 name += " "
             }
         }
-        
         let email = signInWithAppleResult.authDataResult.user.email ?? ""
-        
-        
-        let data = FBUser.dataDict(uid: uid,
-                                         name: name,
-                                         email: email)
-        
-        // Now create or merge the User in Firestore DB
-        FBFirestore.mergeFBUser(data, uid: uid) { (result) in
+        let user = FBUser(uid: uid, name: name, email: email)
+        FBFirestore.mergeFBUser(fbUser: user, uid: uid) { (result) in
             completion(result)
         }
     }
@@ -197,6 +190,7 @@ public struct FBAuth {
     ///   - name: Name entered and stored in the user collection
     ///   - password: password used, but not stored
     ///   - completionHandler: result completion handler
+    
     static func createUser(withEmail email:String,
                            name: String,
                            password:String,
@@ -210,11 +204,8 @@ public struct FBAuth {
                 completionHandler(.failure(error!))
                 return
             }
-            let data = FBUser.dataDict(uid: authResult!.user.uid,
-                                             name: name,
-                                             email: authResult!.user.email!)
-            
-            FBFirestore.mergeFBUser(data, uid: authResult!.user.uid) { (result) in
+            let user = FBUser(uid: authResult!.user.uid, name: name, email: authResult!.user.email!)
+            FBFirestore.mergeFBUser(fbUser: user, uid: authResult!.user.uid) { result in
                 completionHandler(result)
             }
             completionHandler(.success(true))

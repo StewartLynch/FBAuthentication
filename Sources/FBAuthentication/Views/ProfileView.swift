@@ -65,17 +65,16 @@ public struct ProfileView: View {
                     Button(canDelete ? "DELETE ACCOUNT" : "Authenticate") {
                         if canDelete {
                             FBFirestore.deleteUserData(uid: userInfo.user.uid) { result in
+                                presentationMode.wrappedValue.dismiss()
                                 switch result {
                                 case .success:
                                     FBAuth.deleteUser { result in
                                         if case let .failure(error) = result {
                                             print(error.localizedDescription)
                                         }
-                                        presentationMode.wrappedValue.dismiss()
                                     }
                                 case .failure(let error):
                                     print(error.localizedDescription)
-                                    presentationMode.wrappedValue.dismiss()
                                 }
                             }
                         } else {

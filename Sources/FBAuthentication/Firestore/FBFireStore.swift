@@ -6,32 +6,35 @@
 //  Copyright © 2020 CreaTECH Solutions. All rights reserved.
 //
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 /// A The functions used by the package to retrieve the user information, update and delete account
 public enum FBFirestore {
-    
-    /// Retrieves the FBUser instasnce
+    /// Retrieves the FBUser instance
     /// - Parameters:
     ///   - uid: The userID
-    ///   - completion: a result providing the instance or an error
+    ///   - completion: a result providing the FBUser or an error
     static func retrieveFBUser(uid: String, completion: @escaping (Result<FBUser, Error>) -> ()) {
         let reference = Firestore
             .firestore()
             .collection(FBKeys.CollectionPath.users)
             .document(uid)
-        getDocument(for: reference) { (result) in
+        getDocument(for: reference) { result in
             switch result {
-            case .success(let data):
-                guard let user = FBUser(documentData: data) else {
+            case .success(let document):
+                do {
+                    guard let user = try document.data(as: FBUser.self) else {
+                        completion(.failure(FireStoreError.noUser))
+                        return
+                    }
+                    completion(.success(user))
+                } catch {
                     completion(.failure(FireStoreError.noUser))
-                    return
                 }
-                completion(.success(user))
-            case .failure(let err):
-                completion(.failure(err))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
-        
     }
     
     /// Upates the user name
@@ -53,29 +56,28 @@ public enum FBFirestore {
     
     /// Creates the new user
     /// - Parameters:
-    ///   - data: the name and email address provided
+    ///   - fbUser: an instance of FBUser
     ///   - uid: the unique ID generated
     ///   - completion: the result providing a success or an error
-    static func mergeFBUser(_ data: [String: Any], uid: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+    static func mergeFBUser(fbUser: FBUser, uid: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         let reference = Firestore
             .firestore()
             .collection(FBKeys.CollectionPath.users)
             .document(uid)
-        reference.setData(data, merge: true) { (err) in
-            if let err = err {
-                completion(.failure(err))
-                return
-            }
+        do {
+            let _ =  try reference.setData(from: fbUser, merge: true)
             completion(.success(true))
+        } catch {
+            completion(.failure(error))
         }
     }
-    
     
     /// retrieves the document snapshot for the user collection
     /// - Parameters:
     ///   - reference: the document reference
     ///   - completion: a completion handler providing the resulting data or an error
-    fileprivate static func getDocument(for reference: DocumentReference, completion: @escaping (Result<[String : Any], Error>) -> ()) {
+    
+    fileprivate static func getDocument(for reference: DocumentReference, completion: @escaping (Result<DocumentSnapshot, Error>) -> ()) {
         reference.getDocument { (documentSnapshot, err) in
             if let err = err {
                 completion(.failure(err))
@@ -85,11 +87,7 @@ public enum FBFirestore {
                 completion(.failure(FireStoreError.noDocumentSnapshot))
                 return
             }
-            guard let data = documentSnapshot.data() else {
-                completion(.failure(FireStoreError.noSnapshotData))
-                return
-            }
-            completion(.success(data))
+            completion(.success(documentSnapshot))
         }
     }
     

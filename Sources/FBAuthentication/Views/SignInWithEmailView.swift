@@ -33,7 +33,9 @@ struct SignInWithEmailView: View {
                 }) {
                     Text("Forgot Password")
                 }
-            }.padding(.bottom)
+                .foregroundColor(Color(primaryColor))
+            }
+            .padding(.bottom)
             VStack(spacing: 10) {
                 Button(action: {
                     FBAuth.authenticate(withEmail: self.user.email,
