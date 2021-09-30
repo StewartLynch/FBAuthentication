@@ -14,7 +14,7 @@ public enum FBFirestore {
     /// - Parameters:
     ///   - uid: The userID
     ///   - completion: a result providing the FBUser or an error
-    static func retrieveFBUser(uid: String, completion: @escaping (Result<FBUser, Error>) -> ()) {
+    static func retrieveFBUser(uid: String, completion: @escaping (Result<FBUser, Error>) -> Void) {
         let reference = Firestore
             .firestore()
             .collection(FBKeys.CollectionPath.users)
@@ -36,7 +36,6 @@ public enum FBFirestore {
             }
         }
     }
-    
     /// Upates the user name
     /// - Parameters:
     ///   - newName: new name provided
@@ -53,31 +52,29 @@ public enum FBFirestore {
             completion(.success(true))
         }
     }
-    
     /// Creates the new user
     /// - Parameters:
     ///   - fbUser: an instance of FBUser
     ///   - uid: the unique ID generated
     ///   - completion: the result providing a success or an error
-    static func mergeFBUser(fbUser: FBUser, uid: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+    static func mergeFBUser(fbUser: FBUser, uid: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         let reference = Firestore
             .firestore()
             .collection(FBKeys.CollectionPath.users)
             .document(uid)
         do {
-            let _ =  try reference.setData(from: fbUser, merge: true)
+            _ =  try reference.setData(from: fbUser, merge: true)
             completion(.success(true))
         } catch {
             completion(.failure(error))
         }
     }
-    
     /// retrieves the document snapshot for the user collection
     /// - Parameters:
     ///   - reference: the document reference
     ///   - completion: a completion handler providing the resulting data or an error
-    
-    fileprivate static func getDocument(for reference: DocumentReference, completion: @escaping (Result<DocumentSnapshot, Error>) -> ()) {
+    fileprivate static func getDocument(for reference: DocumentReference,
+                                        completion: @escaping (Result<DocumentSnapshot, Error>) -> Void) {
         reference.getDocument { (documentSnapshot, err) in
             if let err = err {
                 completion(.failure(err))
@@ -90,12 +87,11 @@ public enum FBFirestore {
             completion(.success(documentSnapshot))
         }
     }
-    
     /// Deletes the user account
     /// - Parameters:
     ///   - uid: the unique user ID
     ///   - completion: a completion result of a success or an error
-   public static func deleteUserData(uid: String, completion: @escaping (Result<Bool,Error>) -> Void) {
+   public static func deleteUserData(uid: String, completion: @escaping (Result<Bool, Error>) -> Void) {
         let reference = Firestore
             .firestore()
             .collection(FBKeys.CollectionPath.users)

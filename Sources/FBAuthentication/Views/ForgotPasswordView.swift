@@ -11,35 +11,35 @@ import SwiftUI
 struct ForgotPasswordView: View {
     @State var user: UserViewModel = UserViewModel()
     @Environment(\.presentationMode) var presentationMode
-    
     @State private var showAlert = false
     @State private var errString: String?
     var primaryColor: UIColor
-    
     var body: some View {
         NavigationView {
             VStack {
-                TextField("Enter email address", text: $user.email).autocapitalization(.none).keyboardType(.emailAddress)
-                Button(action: {
+                TextField("Enter email address", text: $user.email)
+                    .autocapitalization(.none)
+                    .keyboardType(.emailAddress)
+                Button {
                     FBAuth.resetPassword(email: self.user.email) { (result) in
                         switch result {
                         case .failure(let error):
                             self.errString = error.localizedDescription
-                        case .success( _):
+                        case .success:
                             break
                         }
                         self.showAlert = true
                     }
-                }) {
+                } label: {
                     Text("Reset")
                         .frame(width: 200)
                         .padding(.vertical, 15)
                         .background(Color(primaryColor))
                         .cornerRadius(8)
                         .foregroundColor(.white)
-                        .opacity(user.isEmailValid(_email: user.email) ? 1 : 0.75)
+                        .opacity(user.isEmailValid( user.email) ? 1 : 0.75)
                 }
-                .disabled(!user.isEmailValid(_email: user.email))
+                .disabled(!user.isEmailValid( user.email))
                 Spacer()
             }.padding(.top)
                 .frame(width: 300)
@@ -58,7 +58,6 @@ struct ForgotPasswordView: View {
         }
     }
 }
-
 
 struct ForgotPasswordView_Previews: PreviewProvider {
     static var previews: some View {

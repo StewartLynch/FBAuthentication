@@ -11,7 +11,7 @@ import AuthenticationServices
 
 struct SignInWithAppleButtonView: View {
     @State private var currentNonce: String?
-    var handleResult: ((Result<Bool,Error>) -> Void)? = nil
+    var handleResult: ((Result<Bool, Error>) -> Void)?
     var body: some View {
         SignInWithAppleButton(.continue,
                               onRequest: { request in
@@ -26,33 +26,37 @@ struct SignInWithAppleButtonView: View {
                                     switch authResult.credential {
                                     case let appleIDCredential as ASAuthorizationAppleIDCredential:
                                         guard let nonce = currentNonce else {
-                                            fatalError("Invalid state: A login callback was received, but no login request was sent.")
+                                            fatalError("Invalid state: A login callback was received,"
+                                                       + "but no login request was sent.")
                                         }
                                         guard let appleIDToken = appleIDCredential.identityToken else {
                                             print("Unable to fetch identity token")
                                             return
                                         }
-                                        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
-                                            print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+                                        guard let idTokenString = String(data: appleIDToken,
+                                                                         encoding: .utf8) else {
+                                            print("Unable to serialize token " +
+                                                  "string from data: " + "\(appleIDToken.debugDescription)")
                                             return
                                         }
                                         if let handleResult = handleResult {
-                                            FBAuth.reauthenticateWithApple(idTokenString: idTokenString, nonce: nonce) { result in
+                                            FBAuth.reauthenticateWithApple(idTokenString: idTokenString,
+                                                                           nonce: nonce) { result in
                                                 handleResult(result)
                                             }
                                         } else {
-                                            
-                                            FBAuth.signInWithApple(idTokenString: idTokenString, nonce: nonce) { (result) in
+                                            FBAuth.signInWithApple(idTokenString: idTokenString,
+                                                                   nonce: nonce) { (result) in
                                                 switch result {
                                                 case .failure(let error):
                                                     print(error.localizedDescription)
                                                 case .success(let authDataResult):
-                                                    let signInWithAppleRestult = (authDataResult,appleIDCredential)
+                                                    let signInWithAppleRestult = (authDataResult, appleIDCredential)
                                                     FBAuth.handle(signInWithAppleRestult) { (result) in
                                                         switch result {
                                                         case .failure(let error):
                                                             print(error.localizedDescription)
-                                                        case .success( _):
+                                                        case .success:
                                                             print("Successful Login")
                                                         }
                                                     }

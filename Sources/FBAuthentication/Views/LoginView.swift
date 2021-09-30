@@ -16,15 +16,18 @@ struct LoginView: View {
     @State private var action: Action?
     var primaryColor: UIColor
     var secondaryColor: UIColor
-    
     var body: some View {
         VStack {
-            SignInWithEmailView(showSheet: $showSheet, action: $action, primaryColor: primaryColor, secondaryColor: secondaryColor)
+            SignInWithEmailView(showSheet: $showSheet,
+                                action: $action,
+                                primaryColor: primaryColor,
+                                secondaryColor: secondaryColor)
             SignInWithAppleButtonView()
         }
             .sheet(isPresented: $showSheet) { [action] in
                 if action == .signUp {
-                    SignUpView(primaryColor: primaryColor, secondaryColor: secondaryColor)
+                    SignUpView(primaryColor: primaryColor,
+                               secondaryColor: secondaryColor)
                 } else {
                     ForgotPasswordView(primaryColor: primaryColor)
                 }

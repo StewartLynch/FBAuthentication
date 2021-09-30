@@ -16,7 +16,6 @@ struct SignUpView: View {
     @State private var errorString = ""
     var primaryColor: UIColor
     var secondaryColor: UIColor
-    
     var body: some View {
         NavigationView {
             VStack {
@@ -43,14 +42,14 @@ struct SignUpView: View {
                     }
                     VStack(alignment: .leading) {
                         TextInputView("Confirm Password", text: $user.confirmPassword, isSecure: true)
-                        if !user.passwordsMatch(_confirmPW: user.confirmPassword) {
+                        if !user.passwordsMatch( user.confirmPassword) {
                             Text(user.validConfirmPasswordText).font(.caption).foregroundColor(.red)
                         }
                         Rectangle().fill(Color(.secondaryLabel))
                             .frame(height: 1)
                     }
                 VStack(spacing: 20 ) {
-                    Button(action: {
+                    Button {
                         FBAuth.createUser(withEmail: self.user.email,
                                           name: self.user.fullname,
                                           password: self.user.password) { (restult) in
@@ -58,11 +57,11 @@ struct SignUpView: View {
                             case .failure(let error):
                                 self.errorString = error.localizedDescription
                                 self.showError = true
-                            case .success( _):
+                            case .success:
                                 print("Account creation successful")
                             }
                         }
-                    }) {
+                    } label: {
                         Text("Register")
                             .frame(width: 200)
                             .padding(.vertical, 15)
@@ -78,7 +77,9 @@ struct SignUpView: View {
             .frame(width: 300)
             .padding(.top)
                 .alert(isPresented: $showError) {
-                    Alert(title: Text("Error creating accout"), message: Text(self.errorString), dismissButton: .default(Text("OK")))
+                    Alert(title: Text("Error creating accout"),
+                          message: Text(self.errorString),
+                          dismissButton: .default(Text("OK")))
                 }
                 .navigationBarTitle("Sign Up", displayMode: .inline)
                 .navigationBarItems(trailing: Button("Dismiss") {
@@ -90,7 +91,7 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(primaryColor:UIColor.systemOrange, secondaryColor: .blue)
+        SignUpView(primaryColor: UIColor.systemOrange, secondaryColor: .blue)
     }
 }
 
@@ -123,7 +124,7 @@ struct TextInputView: View {
 }
 
 extension String {
-    struct TFProperties:Equatable {
+    struct TFProperties: Equatable {
         var offset: Double = 0
         var phColor = Color(.placeholderText)
         var scale: Double = 1
@@ -135,5 +136,4 @@ extension String {
             return TFProperties(offset: 25, phColor: Color(.secondaryLabel), scale: 0.8)
         }
     }
-    
 }

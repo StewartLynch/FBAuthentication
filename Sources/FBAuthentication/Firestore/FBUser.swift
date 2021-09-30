@@ -9,13 +9,11 @@
 import Foundation
 
 /// The User object created when the user authenticates.
-public struct FBUser {
+public struct FBUser: Codable {
     public let uid: String
     public var name: String
     let email: String
-    
     // App Specific properties can be added here
-    
     /// The FBUser object
     /// - Parameters:
     ///   - uid: the UserID

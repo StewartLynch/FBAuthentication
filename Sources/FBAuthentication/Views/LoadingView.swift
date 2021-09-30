@@ -7,7 +7,6 @@
 
 import SwiftUI
 public struct LoadingView<StartView>: View where StartView: View {
-    
     /// The view that is first presented while identifying the current authentication state
     @EnvironmentObject var userInfo: UserInfo
     var startView: StartView
@@ -15,7 +14,6 @@ public struct LoadingView<StartView>: View where StartView: View {
     var primaryColor: UIColor
     var secondaryColor: UIColor
     var logoImage: Image?
-    
     /// Loading View parameters
     /// - Parameters:
     ///   - startView: The view that is presented once the user is authenticated
@@ -28,7 +26,6 @@ public struct LoadingView<StartView>: View where StartView: View {
                 primaryColor: UIColor = .systemOrange,
                 secondaryColor: UIColor = .systemBlue,
                 logoImage: Image? = nil ) {
-    
         self.title = title
         self.startView = startView
         self.primaryColor = primaryColor
@@ -66,12 +63,11 @@ public struct LoadingView<StartView>: View where StartView: View {
             self.userInfo.configureFirebaseStateDidChange()
         }
     }
-   
 }
 
 extension LoadingView {
     var firebaseLogo: some View {
-        ZStack(alignment: .center){
+        ZStack(alignment: .center) {
             VStack {
                 Rectangle().fill(Color(secondaryColor))
                     .frame(width: 120, height: 1)

@@ -12,12 +12,11 @@ struct SignInWithEmailView: View {
     @EnvironmentObject var userInfo: UserInfo
     @State var user: UserViewModel = UserViewModel()
     @Binding var showSheet: Bool
-    @Binding var action:LoginView.Action?
+    @Binding var action: LoginView.Action?
     @State private var showAlert = false
     @State private var authError: EmailAuthError?
     var primaryColor: UIColor
     var secondaryColor: UIColor
-    
     var body: some View {
         VStack {
             TextField("Email Address",
@@ -27,28 +26,28 @@ struct SignInWithEmailView: View {
             SecureField("Password", text: $user.password)
             HStack {
                 Spacer()
-                Button(action: {
-                    self.action = .resetPW
-                    self.showSheet = true
-                }) {
+                Button {
+                    action = .resetPW
+                    showSheet = true
+                } label: {
                     Text("Forgot Password")
                 }
                 .foregroundColor(Color(primaryColor))
             }
             .padding(.bottom)
             VStack(spacing: 10) {
-                Button(action: {
+                Button {
                     FBAuth.authenticate(withEmail: self.user.email,
                                         password: self.user.password) { (result) in
                                             switch result {
                                             case .failure(let error):
                                                 self.authError = error
                                                 self.showAlert = true
-                                            case .success( _):
+                                            case .success:
                                                 print("Signed in")
                                             }
                     }
-                }) {
+                } label: {
                     Text("Login")
                         .padding(.vertical, 15)
                         .frame(width: 200)
@@ -57,10 +56,10 @@ struct SignInWithEmailView: View {
                         .foregroundColor(.white)
                         .opacity(user.isLogInComplete ? 1 : 0.75)
                 }.disabled(!user.isLogInComplete)
-                Button(action: {
-                    self.action = .signUp
-                    self.showSheet = true
-                }) {
+                Button {
+                    action = .signUp
+                   showSheet = true
+                } label: {
                     Text("Sign Up")
                         .padding(.vertical, 15)
                         .frame(width: 200)
@@ -70,7 +69,9 @@ struct SignInWithEmailView: View {
                 }
             }
             .alert(isPresented: $showAlert) {
-                Alert(title: Text("Login Error"), message: Text(self.authError?.localizedDescription ?? "Unknown error"), dismissButton: .default(Text("OK")) {
+                Alert(title: Text("Login Error"),
+                      message: Text(self.authError?.localizedDescription ?? "Unknown error"),
+                      dismissButton: .default(Text("OK")) {
                     if self.authError == .incorrectPassword {
                         self.user.password = ""
                     } else {
@@ -83,12 +84,14 @@ struct SignInWithEmailView: View {
         .padding(.top)
         .frame(width: 300)
         .textFieldStyle(RoundedBorderTextFieldStyle())
-        
     }
 }
 
 struct SignInWithEmailView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInWithEmailView(showSheet: .constant(false), action: .constant(.signUp), primaryColor: .systemGreen, secondaryColor: .systemBlue)
+        SignInWithEmailView(showSheet: .constant(false),
+                            action: .constant(.signUp),
+                            primaryColor: .systemGreen,
+                            secondaryColor: .systemBlue)
     }
 }

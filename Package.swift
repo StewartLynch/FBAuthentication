@@ -13,7 +13,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "FBAuthentication",
-            targets: ["FBAuthentication"]),
+            targets: ["FBAuthentication"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -28,11 +28,11 @@ let package = Package(
             dependencies: [
                 .product(name: "FirebaseAuth", package: "Firebase"),
                 .product(name: "FirebaseFirestore", package: "Firebase"),
-                .product(name: "FirebaseFirestoreSwift-Beta", package: "Firebase"),
+                .product(name: "FirebaseFirestoreSwift-Beta", package: "Firebase")
             ],
             resources: [.process("Image.xcassets")]),
         .testTarget(
             name: "FBAuthenticationTests",
-            dependencies: ["FBAuthentication"]),
+            dependencies: ["FBAuthentication"])
     ]
 )

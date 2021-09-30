@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 // MARK: - SignIn with Apple Erors
 enum SignInWithAppleAuthError: Error {
     case noAuthDataResult
@@ -16,7 +15,6 @@ enum SignInWithAppleAuthError: Error {
     case noIdTokenString
     case noAppleIDCredential
 }
-
 extension SignInWithAppleAuthError: LocalizedError {
     // This will provide me with a specific localized description for the SignInWithAppleAuthError
     var errorDescription: String? {
@@ -32,7 +30,6 @@ extension SignInWithAppleAuthError: LocalizedError {
         }
     }
 }
-
 // MARK: - Signin in with email errors
 enum EmailAuthError: Error {
     case incorrectPassword
@@ -42,7 +39,6 @@ enum EmailAuthError: Error {
     case couldNotCreate
     case extraDataNotCreated
 }
-
 extension EmailAuthError: LocalizedError {
     // This will provide me with a specific localized description for the EmailAuthError
     var errorDescription: String? {
@@ -62,7 +58,3 @@ extension EmailAuthError: LocalizedError {
         }
     }
 }
-
-
-
-

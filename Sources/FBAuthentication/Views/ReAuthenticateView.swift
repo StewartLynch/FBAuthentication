@@ -13,7 +13,6 @@ struct ReAuthenticateView: View {
     @Binding var canDelete: Bool
     @State private var password = ""
     @State private var errorText = ""
-    
     var body: some View {
         ZStack {
             Color(.gray).opacity(0.4)
@@ -68,7 +67,7 @@ struct ReAuthenticateView: View {
             .shadow(color: .black.opacity(0.2), radius: 20, x: 0, y: 20)
         }
     }
-    func handleResult(result: Result<Bool,Error>) {
+    func handleResult(result: Result<Bool, Error>) {
         switch result {
         case .success:
             // Reauthenticated now so you can delete

@@ -15,7 +15,6 @@ public struct ProfileView: View {
     @State private var canDelete = false
     @State private var fullname = ""
     var primaryColor: UIColor
-    
     public init(primaryColor: UIColor = .systemOrange) {
         self.primaryColor = primaryColor
     }
@@ -30,7 +29,7 @@ public struct ProfileView: View {
                         Button {
                             FBFirestore.updateUserName(with: fullname, uid: userInfo.user.uid) { result in
                                 switch result {
-                                case .success(_):
+                                case .success:
                                     print("success")
                                     userInfo.user.name = fullname
                                     presentationMode.wrappedValue.dismiss()
@@ -50,7 +49,11 @@ public struct ProfileView: View {
                     }
                     .padding()
                 }
-                Text(canDelete ? "DO YOU REALLY WANT TO DELETE?" : "Deleting your account will delete all content and remove your information from the database.  You must first re-authenticate")
+                Text(canDelete ?
+                    "DO YOU REALLY WANT TO DELETE?" :
+                    "Deleting your account will delete all content " +
+                    "and remove your information from the database. " +
+                    "You must first re-authenticate")
                 HStack {
                     Button("Cancel") {
                         canDelete = false
@@ -92,7 +95,7 @@ public struct ProfileView: View {
                 Spacer()
             }
             .padding(.top, 40)
-            .padding(.horizontal,10)
+            .padding(.horizontal, 10)
             if !providers.isEmpty {
                 ReAuthenticateView(providers: $providers, canDelete: $canDelete)
             }
