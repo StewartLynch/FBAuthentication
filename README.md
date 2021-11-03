@@ -10,7 +10,7 @@ Solution facilitates ability to request **password reset** for email/password si
 
 Watch this video and/or follow the documentation.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/f480NQwvz7E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tKBguB5c5ic" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 [TOC]
 
