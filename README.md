@@ -265,8 +265,6 @@ A new **User** collection has been created in the Firestore database along with 
 
 ![image-20210920220817952](Images/image-20210920220817952.png)
 
-> **Note:** For ease of management, it is recommended that you create all new collections as sub collections of the user.  That way, you will be able to delete a user and all corresponding data will be deleted along with it.
-
 ### Create a Log Out Button
 
 Somewhere within your app, and I recommend the Home View, create a button that will handle the log out function.  
