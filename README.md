@@ -404,9 +404,78 @@ If you signed in with apple, upon tapping the **Authenticate** button you will b
 
 ![image-20210921123659314](Images/image-20210921123659314.png)
 
+#### What gets Deleted?
+
+This solution ***only deletes the authentication entry***, preventing the user from logging in again.
+
+If they create a new account, it will not be linked to any existing Firestore documents (like the entry in the users collection.)
+
+You could clone this framework as I show in this video https://youtu.be/7rFPvj7yu4Q, and discuss below in the *Modifying the Package Section* and then add additional functionality to the appliction that will preform those tasks.
+
+For example, I have created a function in the FBFirestore.swift file named *deleteUserData* that will delete the users's corresponding document in the *user*s collection.  To use this, you would have to modify the ProfileView's Delete account button's action to call that function prior to deleting the user.  This would look like this:
+
+`````swift
+Button(canDelete ? "DELETE ACCOUNT" : "Authenticate") {
+    if canDelete {
+        FBFirestore.deleteUserData(uid: userInfo.user.uid) { result in
+            presentationMode.wrappedValue.dismiss()
+            switch result {
+            case .success:
+                FBAuth.deleteUser { result in
+                    if case let .failure(error) = result {
+                        print(error.localizedDescription)
+                    }
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    } else {
+        withAnimation {
+        providers = FBAuth.getProviders()
+        }
+    }
+}
+`````
+
+However, this is not really a great solution because you might haved multiple sub collections or additional items stored in Firebase Storage connected to this user.
+
+A better solution is to install the Firebase extension *Delete User Data* - https://firebase.google.com/products/extensions/delete-user-data
+
+### Delete User Data Extension
+
+With this extension installed, you can configure it to delete all connected collections and storage items that are connected to the account being deleted.
+
+The caveat is that you need to be on at least the [Blaze (pay as you go) plan](https://firebase.google.com/pricing).
+
+Once you have this established for your Firebase account and project, you can use the console to install the extension.
+
+> Before you install the extension, ae sure that you haveset up Cloud Firestore and and Cloud Storage in your project.
+>
+> Also make sure that you've set up Firebase Authentication to manage your users.
+
+#### What can you configure?
+
+With it installed, you can configure:
+
+- Cloud Functions location
+- Cloud Firestore paths
+- Cloud Firestore delete mode
+- Realtime Database instance
+- Realtime Database paths
+- Cloud Storage paths
+
+You can follow the instructions provided on the documentation page ( https://firebase.google.com/products/extensions/delete-user-data) to install the extension.  It is very straight forward.
+
+In the case of this sample application, the only thing I had to configure was the path to the users collection in cloud Firestore.  Each document in the users collection is identified by the UID of the user.
+
+![image-20211103100221942](Images/image-20211103100221942.png)
+
 #### Confirm Account Removal
 
-I suggest that you log in to the Firebase console to confirm that the account(s) have been removed entirely from the **authentication** tab and from the **Firebase Firestore** user collection.
+With the extension installed, once a user has been deleted, the corresponding document in the users collection is also removed.
+
+You can log in to the Firebase console to confirm that the account(s) have been removed entirely from the **authentication** tab and from the **Firebase Firestore** user collection.
 
 ## Custom Colors and icons
 
@@ -463,8 +532,6 @@ Similarly, you can pass in a primary color as an argument when presenting the Pr
 }
 `````
 
-
-
 ## What Firebase Modules are installed
 
 Normally, when you install Firebase using Swift Package manager, you specify which Firebase modules you want to include in your install.  FBAuthentication uses the following:
@@ -473,11 +540,7 @@ Normally, when you install Firebase using Swift Package manager, you specify whi
 * FirebaseFirestore
 * FirebaseFirestoreSwift-Beta
 
-If your application is going to use additional modules such as FirebaseAnalytics or FirebaseStorage, you will have to install the Firebase package and select these additional product modules 
-
-## Cautions
-
-> In order for this solution to be used successfully with your application, you need to ensure that all of your data for a user is stored as a subcollection of the user collection.  That way, when the  account deletion occurs, all related data will be deleted as well.  If you are using additional storage like Storage, you will have to ensure that you delete that data as well to comply with Apple's requirements.  In that case, I recommend that you fork the entire swift package and install it as a local framework where you can modify the code accordingly. See next section.
+If your application is going to use additional modules such as FirebaseAnalytics or FirebaseStorage, you will have to install the Firebase package and select these additional product modules and make sure that if you are using the Firebase Delete Data extension that you configure the paths accordingly.
 
 ## Modifying the package
 
