@@ -1,6 +1,6 @@
 # FBAuthentication
 
-A Swift Paakage for adding a turnkey sign up/sign in to Firebase workflow for your SwiftUI apps.
+A Swift Pakage for adding a turnkey sign up/sign in to Firebase workflow for your SwiftUI apps.
 After configuring your app for Firebase/Firestore connectivity, a single line of code will create the workflow for signing up and signing in to a Firebase account.
 
 #### Features
