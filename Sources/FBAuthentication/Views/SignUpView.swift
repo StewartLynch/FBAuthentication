@@ -42,7 +42,7 @@ struct SignUpView: View {
                     }
                     VStack(alignment: .leading) {
                         TextInputView("Confirm Password", text: $user.confirmPassword, isSecure: true)
-                        if !user.passwordsMatch( user.confirmPassword) {
+                        if !user.passwordsMatch {
                             Text(user.validConfirmPasswordText).font(.caption).foregroundColor(.red)
                         }
                         Rectangle().fill(Color(.secondaryLabel))
@@ -68,9 +68,9 @@ struct SignUpView: View {
                             .background(Color(primaryColor))
                             .cornerRadius(8)
                             .foregroundColor(.white)
-                            .opacity(user.isSignInComplete ? 1 : 0.75)
+                            .opacity(user.isSignUpComplete ? 1 : 0.75)
                     }
-                    .disabled(!user.isSignInComplete)
+                    .disabled(!user.isSignUpComplete)
                     Spacer()
                 }.padding()
             }
