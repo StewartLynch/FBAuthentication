@@ -36,7 +36,7 @@ struct UserViewModel {
         isEmailValid() && !isEmpty(password)
     }
     var isSignUpComplete: Bool {
-        isSignInComplete && isPasswordValid() && passwordsMatch
+        isSignInComplete && isPasswordValid() && !isEmpty(fullname) && passwordsMatch
     }
 
     // MARK: - Validation Error Strings
