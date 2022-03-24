@@ -23,10 +23,11 @@ public enum FBFirestore {
             switch result {
             case .success(let document):
                 do {
-                    guard let user = try document.data(as: FBUser.self) else {
-                        completion(.failure(FireStoreError.noUser))
-                        return
-                    }
+                    let user = try document.data(as: FBUser.self)
+//                    guard let user = try document.data(as: FBUser.self) else {
+//                        completion(.failure(FireStoreError.noUser))
+//                        return
+//                    }
                     completion(.success(user))
                 } catch {
                     completion(.failure(FireStoreError.noUser))
