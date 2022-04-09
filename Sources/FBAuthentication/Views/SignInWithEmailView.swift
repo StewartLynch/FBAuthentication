@@ -54,8 +54,8 @@ struct SignInWithEmailView: View {
                         .background(Color(primaryColor))
                         .cornerRadius(8)
                         .foregroundColor(.white)
-                        .opacity(user.isLogInComplete ? 1 : 0.75)
-                }.disabled(!user.isLogInComplete)
+                        .opacity(user.isSignInComplete ? 1 : 0.75)
+                }.disabled(!user.isSignInComplete)
                 Button {
                     action = .signUp
                    showSheet = true
