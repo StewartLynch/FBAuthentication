@@ -67,25 +67,25 @@ public struct ProfileView: View {
                     .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.gray, lineWidth: 1))
                     Button(canDelete ? "DELETE ACCOUNT" : "Authenticate") {
                         if canDelete {
-                            FBAuth.deleteUser { result in
-                                if case let .failure(error) = result {
+                            // FBAuth.deleteUser { result in
+                            //     if case let .failure(error) = result {
+                            //         print(error.localizedDescription)
+                            //     }
+                            // }
+                            // Alternative if you also want to delete the corresponding user collection
+                            FBFirestore.deleteUserData(uid: userInfo.user.uid) { result in
+                                presentationMode.wrappedValue.dismiss()
+                                switch result {
+                                case .success:
+                                    FBAuth.deleteUser { result in
+                                        if case let .failure(error) = result {
+                                            print(error.localizedDescription)
+                                        }
+                                    }
+                                case .failure(let error):
                                     print(error.localizedDescription)
                                 }
                             }
-                            // Alternative if you also want to delete the corresponding user collection
-//                            FBFirestore.deleteUserData(uid: userInfo.user.uid) { result in
-//                                presentationMode.wrappedValue.dismiss()
-//                                switch result {
-//                                case .success:
-//                                    FBAuth.deleteUser { result in
-//                                        if case let .failure(error) = result {
-//                                            print(error.localizedDescription)
-//                                        }
-//                                    }
-//                                case .failure(let error):
-//                                    print(error.localizedDescription)
-//                                }
-//                            }
                         } else {
                             withAnimation {
                             providers = FBAuth.getProviders()
