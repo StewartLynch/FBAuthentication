@@ -37,9 +37,9 @@ struct ForgotPasswordView: View {
                         .background(Color(primaryColor))
                         .cornerRadius(8)
                         .foregroundColor(.white)
-                        .opacity(user.isEmailValid( user.email) ? 1 : 0.75)
+                        .opacity(user.isEmailValid() ? 1 : 0.75)
                 }
-                .disabled(!user.isEmailValid( user.email))
+                .disabled(!user.isEmailValid())
                 Spacer()
             }.padding(.top)
                 .frame(width: 300)
